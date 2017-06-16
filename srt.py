@@ -57,8 +57,6 @@ ZERO_TIMEDELTA = timedelta(0)
 SUBTITLE_SKIP_CONDITIONS = (
     ('No content', lambda sub: not sub.content.strip()),
     ('Start time < 0 seconds', lambda sub: sub.start < ZERO_TIMEDELTA),
-)
-SUBTITLE_WARN_CONDITIONS = (
     ('Subtitle start time > end time', lambda sub: sub.start > sub.end),
 )
 
@@ -123,12 +121,6 @@ class Subtitle(object):
                   SRT formatted subtitle block
         :rtype: str
         '''
-        for warning_msg, check_func in SUBTITLE_WARN_CONDITIONS:
-            if check_func(self):
-                log.warning(
-                    'Subtitle at index %d: %s', self.index, warning_msg,
-                )
-
         output_content = self.content
         output_proprietary = self.proprietary
 
