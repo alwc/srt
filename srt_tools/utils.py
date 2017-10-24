@@ -13,6 +13,12 @@ if sys.version_info < (3,):
 else:
     _open = open
 
+try:
+    import chardet
+except ImportError:
+    # chardet is optional for --encoding auto
+    pass
+
 STDIN_BYTESTREAM = getattr(sys.stdin, 'buffer', sys.stdin)
 STDOUT_BYTESTREAM = getattr(sys.stdout, 'buffer', sys.stdout)
 
@@ -92,6 +98,25 @@ def basic_parser(multi_input=False, no_output=False):
 def set_basic_args(args):
     if not args.encoding:
         args.encoding = sys.getdefaultencoding()
+
+    if args.encoding == 'auto':
+        try:
+            chardet
+        except NameError:
+            raise ValueError('--encoding auto needs chardet to be installed')
+
+        if args.input is sys.stdin:
+            raise ValueError(
+                '--encoding auto is currently not supported on stdin'
+            )
+
+        with open(args.input, "rb") as chardet_f:
+            if not chardet_f.seekable():
+                raise ValueError(
+                    '--encoding auto is currently not supported without seek()'
+                )
+
+            args.encoding = chardet.detect(chardet_f.read())['encoding']
 
     # TODO: dedupe some of this
     for stream_name in ('input', 'output'):
