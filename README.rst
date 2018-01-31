@@ -38,6 +38,7 @@ Why choose this library?
 - Tolerant of many common errors found in real-world SRT files
 - Completely Unicode compliant
 - `Released into the public domain`_
+- Optional support for highly performant `re2`_ regex engine
 - Real world tested — used in production to process thousands of SRT files
   every day
 - Portable — runs on Linux, OSX, and Windows

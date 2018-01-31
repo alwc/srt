@@ -4,10 +4,13 @@
 
 from __future__ import unicode_literals
 import functools
-import re
 from datetime import timedelta
 import logging
 
+try:  # Optional performance boost
+    import re2 as re
+except ImportError:
+    import re
 
 log = logging.getLogger(__name__)
 
