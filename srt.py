@@ -48,7 +48,6 @@ SRT_REGEX = re.compile(
     ),
     re.DOTALL,
 )
-TS_LEN = 12
 STANDARD_TS_COLON_OFFSET = 2
 
 ZERO_TIMEDELTA = timedelta(0)
@@ -209,13 +208,6 @@ def srt_timestamp_to_timedelta(ts):
     :returns: The timestamp as a :py:class:`~datetime.timedelta`
     :rtype: datetime.timedelta
     '''
-    if len(ts) < TS_LEN:
-        raise ValueError(
-            'Expected timestamp length >= {}, but got {} (value: {})'.format(
-                TS_LEN, len(ts), ts,
-            )
-        )
-
     # Doing this instead of splitting based on the delimiter using re.split
     # with a compiled regex or str.split is ~15% performance improvement during
     # parsing. We need to look from the end because the number of hours may be
