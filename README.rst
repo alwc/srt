@@ -1,4 +1,4 @@
-|travis| |appveyor| |coveralls| |libraries|
+|travis| |appveyor| |coveralls|
 
 .. |travis| image:: https://img.shields.io/travis/cdown/srt/develop.svg?label=linux%20%2B%20mac%20tests
   :target: https://travis-ci.org/cdown/srt
@@ -11,10 +11,6 @@
 .. |coveralls| image:: https://img.shields.io/coveralls/cdown/srt/develop.svg?label=test%20coverage
   :target: https://coveralls.io/github/cdown/srt?branch=develop
   :alt: Coverage
-
-.. |libraries| image:: https://img.shields.io/librariesio/github/cdown/srt.svg?label=dependencies
-  :target: https://libraries.io/github/cdown/srt
-  :alt: Dependencies
 
 srt is a tiny Python library for parsing, modifying, and composing `SRT
 files`_. Take a look at the quickstart_ for a basic overview of the library.
