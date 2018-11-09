@@ -47,6 +47,13 @@ matrix:
       language: generic
       env: TOXENV=py27,py34,py35,py36,py37
 
+    # Windows -- only limited versions of Python available. In any case, we
+    # only really care about testing Windows compatibility, so just run the
+    # system one.
+    - os: windows
+      language: generic
+      env: TOXENV=system
+
 # This is required to enable container based Travis CI infrastructure.
 # See http://docs.travis-ci.com/user/migrating-from-legacy/
 sudo: false
